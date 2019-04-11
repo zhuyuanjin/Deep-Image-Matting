@@ -5,7 +5,7 @@ import os
 import numpy as np
 import math
 from utils import *
-import cv2
+
 from scipy import misc
 from PIL import Image
 
@@ -52,12 +52,13 @@ class MattingDataSet(Dataset):
         fg = np.array(fg)
         bg = np.array(bg)
         alpha = np.array(alpha)
-        trimap = generate_trimap(alpha)
+        _kernel_size = np.random.randint(3,8,1).item()
+        trimap = generate_trimap(alpha, (_kernel_size, _kernel_size))
         img = np.array(img)
-
         #crop the images
         ##get the location of the bounding box
         loc = random_sample(img, trimap)
+
         img_patch = data_crop(img, loc)
         fg_patch = data_crop(fg, loc)
         trimap_patch = data_crop(trimap, loc)
