@@ -8,10 +8,10 @@ from refinement import RefineNet
 
 
 device = 1
-ed_epoch = 100
-refine_epoch = 100
+ed_epoch = 5
+refine_epoch = 5
 final_epoch = 100
-batch_size = 128
+batch_size = 16
 
 
 RF = RefineNet().double().to(device)
