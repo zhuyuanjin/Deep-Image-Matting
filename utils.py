@@ -34,17 +34,29 @@ def generate_trimap(alpha, kernel_size=(3,3)):
 
 
 
-def random_sample(data, trimap):
-
-    unknown_loc = list(zip(*np.where(trimap == 128)))
-    n_unkown = len(unknown_loc)
-    index = np.random.randint(0, n_unkown)
-    loc = unknown_loc[index]
+def random_sample(data, trimap, crop_size=(320, 320)):
     try:
-        patch = data_crop(data, loc)
-        return loc
-    except IndexError:
-        return random_sample(data, trimap)
+        w, h = data.shape[0], data.shape[1]
+    except:
+        print(type(data))
+    unknown_loc = np.array(list(zip(*np.where(trimap == 128))))
+    n_unkown = len(unknown_loc)
+    i = 1
+    while i<100:
+        index = np.random.randint(0, n_unkown)
+        loc = unknown_loc[index]
+        height, width = crop_size
+        x, y = loc
+        up = int(y - height / 2)
+        down = int(y + height / 2)
+        left = int(x - width / 2)
+        right = int(x + width / 2)
+        if up < 0 or left < 0 or down > h or right > w:
+            continue
+        else:
+            return loc
+    return (int(w/2), int(h/2))
+
 
 
 
