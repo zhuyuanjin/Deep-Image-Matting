@@ -45,7 +45,7 @@ for epoch in range(ed_epoch):
         loss_comp = F.l1_loss(img_predict * unknown, img * unknown)
         loss_alpha = F.mse_loss(alpha_predict * unknown, alpha * unknown)
         loss = loss_comp + loss_alpha
-        print(loss)
+        print(loss.item())
         opt_ED.zero_grad()
         loss.backward()
         opt_ED.step()
