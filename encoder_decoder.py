@@ -137,7 +137,7 @@ class EncoderDecoder(nn.Module):
         x = self.deconvBN2(F.relu(self.deconv2(x)))
         x = self.Unpooling1(x, indices1)
         x = self.deconvBN1(F.relu(self.deconv1(x)))
-        x = self.conv_final(x)
+        x = F.sigmoid(self.conv_final(x))
         return x
 
 
