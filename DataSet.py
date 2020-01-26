@@ -17,7 +17,7 @@ class MattingDataSet(Dataset):
 
     def __len__(self):
 
-        return len(self.img_lst)
+        return 1000
 
     def __getitem__(self, item):
         img_name, _ = self.img_lst[item].split(".")

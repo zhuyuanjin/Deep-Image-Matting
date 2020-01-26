@@ -1,0 +1,9 @@
+Beginning to PreTrain the Encoder Decoder
+/home/zhuyuanjin/anaconda3/envs/zyj/lib/python3.6/site-packages/torch/nn/functional.py:1351: UserWarning: nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.
+  warnings.warn("nn.functional.sigmoid is deprecated. Use torch.sigmoid instead.")
+0.04510022733305848
+0.03943481937533027
+Traceback (most recent call last):
+  File "train.py", line 37, in <module>
+    img, alpha, trimap, unknown = batch['img'].cuda(device), \
+KeyboardInterrupt
